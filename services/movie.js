@@ -1,10 +1,7 @@
 'use strict';
 import { getMovie, getMovies } from '../handlers/movie.js';
 
-const getMovieValidation = {
-    params: {
-        id: { type: 'string' } 
-    },
+const schema = {
     response: {
         200: {
             type: 'object',
@@ -16,7 +13,7 @@ const getMovieValidation = {
     }
 }
 
-export const movieRoutes = [{
+export const movieServices = [{
         method: 'GET',
         url: '/movies',
         handler: getMovies
@@ -25,6 +22,6 @@ export const movieRoutes = [{
         method: 'GET',
         url: '/movies/movie/:id',
         handler: getMovie,
-        schema: getMovieValidation
+        schema: schema
     }
 ];

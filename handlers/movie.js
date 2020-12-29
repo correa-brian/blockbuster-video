@@ -24,7 +24,8 @@ export const getMovie = async(req, reply) => {
     
     const movie = movies.find(movie => movie.id === id);
     if (movie === undefined) {
-      throw new Error('No documents found')
+      return reply.send({ success: true, message: "no movie found" })
     }
+
     return reply.send({ id: id, title: movie.title });
 }
