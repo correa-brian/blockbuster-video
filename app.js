@@ -1,7 +1,7 @@
 'use strict'
 
 import fastify from 'fastify'
-import { movieServices } from './services/movie.js'
+import { movieService } from './services/movie.js'
 import mongoConnector from './plugins/mongo-connector.js'
 
 const app = fastify({
@@ -9,12 +9,17 @@ const app = fastify({
 })
 
 // order matters: https://github.com/fastify/fastify/blob/master/docs/Getting-Started.md#loading-order-of-your-plugins
+// 3P plugins, custom plugins, decorators, hooks, services
+
 // connect to DB
 app.register(mongoConnector)
-movieServices.forEach((route, index) => {
+
+// movie service contains movie-related routes
+movieService.forEach((route, index) => {
   app.route(route)
 })
 
+// serialization schema
 const outputSchema = {
   schema: {
     response: {
@@ -30,6 +35,7 @@ const outputSchema = {
   }
 }
 
+// validation schema for header and body
 const validationOpts = {
   schema: {
     body: {
@@ -50,6 +56,7 @@ const validationOpts = {
   }
 }
 
+// validation schema for querystring params
 const queryStringOpts = {
   schema: {
     querystring: {
@@ -63,6 +70,7 @@ const queryStringOpts = {
   }
 }
 
+// validation schema for params (i.e. example.com/movie/:id)
 const paramsOpts = {
   schema: {
     params: {
@@ -87,8 +95,10 @@ app.get('/', outputSchema, async (req, reply) => {
 
 // test query string schema
 app.get('/question', queryStringOpts, async (req, reply) => {
-  reply.header('Content-Type', 'application/json').code(200)
-  reply.send({ hello: 'town' });  
+  reply
+    .header('Content-Type', 'application/json')
+    .code(200)
+    .send({ hello: 'town' });  
 })
 
 // test params schema
@@ -108,6 +118,7 @@ app.addHook('onRoute', (routeOptions) => {
   console.log("route options", routeOptions);
 })
 
+// start the server
 app.listen(3000, '0.0.0.0', (err, address) => {
   if (err) {
     app.log.error(err)

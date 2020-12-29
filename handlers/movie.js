@@ -1,5 +1,8 @@
 'use strict';
 
+/**
+ * Local list of movies
+ */
 let movies = [
     {
         id: 1,
@@ -15,10 +18,22 @@ let movies = [
     }
 ];
 
+/**
+ * Returns all the movies available in the local DB.
+ * 
+ * @param { Request } req 
+ * @param { Object } reply 
+ */
 export const getMovies = async(req, reply) => {
     return reply.send({ success: true, result: movies});
 }
 
+/**
+ * Returns a movie by id.
+ * 
+ * @param { Request } req 
+ * @param { Object} reply 
+ */
 export const getMovie = async(req, reply) => {
     const id = Number(req.params.id);
     
