@@ -1,7 +1,6 @@
 'use strict'
 
 import fastify from 'fastify'
-import { route } from './services/route.js.js'
 import { movieRoutes } from './services/movie.js'
 import mongoConnector from './plugins/mongo-connector.js'
 
@@ -17,7 +16,7 @@ movieRoutes.forEach((route, index) => {
 })
 
 app.get('/', async (req, reply) => {
-  reply.send({ hello: "try this" });
+  reply.send({ hello: "world" });
 })
 
 // hooks
