@@ -8,4 +8,4 @@ Web server written in fastify framework. It's currently a combination of REST en
 ### Setup
 - `npm install`
 - `npm start`
-- visit: `localhost:3000/`
+- visit: `localhost:3000/demo`
