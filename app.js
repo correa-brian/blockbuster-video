@@ -108,7 +108,7 @@ app.get('/demo', async (req, reply) => {
     .header('Content-Type', 'text/html')
     .code(200)
     .type('text/html')
-    .sendFile('./index.html')
+    .sendFile('./public/index.html')
 })
 
 // test query string schema
