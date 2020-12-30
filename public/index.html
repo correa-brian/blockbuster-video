@@ -5,12 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon"
       type="image/png"
-      href="./public/assets/blockbuster-logo.png" />
+      href="/public/assets/blockbuster-logo.png" />
 
     <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//googleads.github.io/videojs-ima/node_modules/videojs-contrib-ads/dist/videojs.ads.css" />
     <link rel="stylesheet" href="//googleads.github.io/videojs-ima/dist/videojs.ima.css" />
     
+    <script type='text/javascript'>
+      var googletag = googletag || {};
+      googletag.cmd = googletag.cmd || [];
+      (function() {
+        var gads = document.createElement('script');
+        gads.async = true;
+        gads.type = 'text/javascript';
+        gads.src = '//www.googletagservices.com/tag/js/gpt.js';
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(gads, node);
+      })();
+    </script>
+
+    <!-- Register your companion slots -->
+    <script type='text/javascript'>
+      googletag.cmd.push(function() {
+        // Supply YOUR_NETWORK/YOUR_UNIT_PATH in place of 6062/iab_vast_samples.
+        googletag.defineSlot('/6062/iab_vast_samples', [728, 90], 'ima-sample-companionDiv')
+            .addService(googletag.companionAds())
+            .addService(googletag.pubads());
+        googletag.companionAds().setRefreshUnfilledSlots(true);
+        googletag.pubads().enableVideoAds();
+        googletag.enableServices();
+      });
+    </script>
+
     <title>Blockbuster Video Stream Services</title>
   </head>
   <body style="text-align: center; background-color:lightsteelblue; color:snow;">
@@ -47,32 +73,51 @@
     </video-js>
 
     <h2>IMA Demo</h2>
-    <video id="content_video" class="video-js vjs-default-skin"
-        controls preload="auto" width="640" height="360" style="margin: auto;">
-      <source src="https://storage.googleapis.com/gvabox/media/samples/android.mp4"
-          type="video/mp4" />
-    </video>
+    <div id="ima-sample-container">
+      <header>Video.js IMA Plugin Advanced Demo</header>
+
+      <center>
+        <label for="tag">Tag (<span id="sampleAdTag" class="urlLink">sample</span>):&nbsp;</label>
+        <input type="text" size="75" id="tagInput" />
+      </center>
+
+      <div id="ima-sample-videoplayer">
+        <video id="content_video" class="video-js vjs-default-skin"
+            poster = "//vjs.zencdn.net/v/oceans.png" controls preload="auto"
+            width="640" height="360" style="margin:auto;">
+          <source src="//commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+              type="video/mp4" ></source>
+        </video>
+      </div>
+
+      <!-- Declare a div where you want the companion to appear. Use
+            googletag.display() to make sure the ad is displayed. -->
+      <div id="ima-sample-companionDiv">
+        <script type="text/javascript">
+          // Using the command queue to enable asynchronous loading.
+          // The unit will not actually display now - it will display when
+          // the video player is displaying the ads.
+          googletag.cmd.push(function() { googletag.display('ima-sample-companionDiv'); });
+        </script>
+      </div>
+
+      <div id="ima-sample-console">
+      Welcome to IMA HTML5 SDK Demo!
+      </div>
+
+        <footer>Copyright (C) 2013 Google Inc.</footer>
+    </div>
     
     <script src="https://unpkg.com/video.js/dist/video.min.js"></script>
     <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
     <script src="//googleads.github.io/videojs-ima/node_modules/videojs-contrib-ads/dist/videojs.ads.min.js"></script>
     <script src="//googleads.github.io/videojs-ima/dist/videojs.ima.js"></script>
+    <script src="/public/ad.js"></script>
     <script>
       var player = videojs('my_video_1');
     </script>
-    <script>
-      var player = videojs('content_video');
-      var options = {
-        id: 'content_video',
-        adTagUrl: 'http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=xml_vmap1&unviewed_position_start=1&cust_params=sample_ar%3Dpremidpostpod%26deployment%3Dgmf-js&cmsid=496&vid=short_onecue&correlator='
-      };
-
-      player.ima(options);
-      // On mobile devices, you must call initializeAdDisplayContainer as the result
-      // of a user action (e.g. button click). If you do not make this call, the SDK
-      // will make it for you, but not as the result of a user action. For more info
-      // see our examples, all of which are set up to work on mobile devices.
-      // player.ima.initializeAdDisplayContainer();
+    <script type="text/javascript">
+      var ads = new Ads();
     </script>
   </body>  
 </html>
