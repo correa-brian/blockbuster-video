@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="live.png" width="150" />
+    <img src="./public/assets/live.png" width="150" />
 </div>
 
 ## Blockbuster Video Streaming Services
