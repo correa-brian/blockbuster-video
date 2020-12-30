@@ -1,6 +1,6 @@
 
-<img src="blockbuster-logo.png" width="200" />
-<img src="live.png" width="150" />
+<img style="float: center" src="blockbuster-logo.png" width="200" />
+<img style="float: center" src="live.png" width="150" />
 
 ## Blockbuster Video Streaming Services
 Web server written in fastify framework. It's currently a combination of REST endpoints and a video streaming endpoint.
