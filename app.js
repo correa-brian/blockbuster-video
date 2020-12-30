@@ -98,13 +98,13 @@ app.setSerializerCompiler(({ schema, method, url, httpStatus }) => {
 })
 
 // test output/serialiation schema
-app.get('/', outputSchema, async (req, reply) => {
+app.get('/', outputSchema, (req, reply) => {
   reply.header('Content-Type', 'application/json').code(200)
-  reply.send({ hello: 'world' })
+  return reply.send({ hello: 'world' })
 })
 
 app.get('/demo', async (req, reply) => {
-  reply
+  await reply
     .header('Content-Type', 'text/html')
     .code(200)
     .type('text/html')
@@ -112,23 +112,23 @@ app.get('/demo', async (req, reply) => {
 })
 
 // test query string schema
-app.get('/question', queryStringOpts, async (req, reply) => {
-  reply
+app.get('/question', queryStringOpts, (req, reply) => {
+  return reply
     .header('Content-Type', 'application/json')
     .code(200)
     .send({ hello: 'town' })
 })
 
 // test params schema
-app.get('/faq/:id', paramsOpts, async (req, reply) => {
+app.get('/faq/:id', paramsOpts, (req, reply) => {
   reply.header('Content-Type', 'application/json').code(200)
-  reply.send({ hello: 'village' })
+  return reply.send({ hello: 'village' })
 })
 
 // test request validation schema (body/headers)
-app.post('/info', validationOpts, async (req, reply) => {
+app.post('/info', validationOpts, (req, reply) => {
   reply.header('Content-Type', 'application/json').code(200)
-  reply.send({ hello: 'info' })
+  return reply.send({ hello: 'info' })
 })
 
 // hooks

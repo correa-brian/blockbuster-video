@@ -24,7 +24,7 @@ let movies = [
  * @param { Request } req
  * @param { Object } reply
  */
-export const getMovies = async (req, reply) => {
+export const getMovies = (req, reply) => {
   return reply.send({ success: true, result: movies })
 }
 
@@ -34,7 +34,7 @@ export const getMovies = async (req, reply) => {
  * @param { Request } req
  * @param { Object } reply
  */
-export const getMovie = async (req, reply) => {
+export const getMovie = (req, reply) => {
   const id = Number(req.params.id)
 
   const movie = movies.find(movie => movie.id === id)
