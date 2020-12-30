@@ -1,6 +1,8 @@
 'use strict'
 import fs from 'fs'
 
+const VIDEO_PATH = './public/assets/bigbuck.mp4'
+
 /**
  * Parse video metadata and stream.
  *
@@ -16,8 +18,8 @@ export const streamVideo = async (req, reply) => {
   }
 
   // get video stats (about 61MB)
-  const videoPath = './bigbuck.mp4'
-  const videoSize = fs.statSync('bigbuck.mp4').size
+  const videoPath = VIDEO_PATH
+  const videoSize = fs.statSync(VIDEO_PATH).size
 
   // Parse Range
   // Example: "bytes=32324-"
