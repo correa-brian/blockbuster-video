@@ -52,14 +52,14 @@ const validationOpts = {
       type: 'object',
       required: ['name'],
       properties: {
-        'name': { type: 'string'},
-        'age': { type: 'integer'} 
+        'name': { type: 'string' },
+        'age': { type: 'integer' }
       }
     },
     headers: {
       type: 'object',
       properties: {
-          'secret-pw': {type: 'string'}
+        'secret-pw': {type: 'string'}
       },
       required: ['secret-pw']
     }
@@ -100,7 +100,7 @@ app.setSerializerCompiler(({ schema, method, url, httpStatus }) => {
 // test output/serialiation schema
 app.get('/', outputSchema, async (req, reply) => {
   reply.header('Content-Type', 'application/json').code(200)
-  reply.send({ hello: 'world' });
+  reply.send({ hello: 'world' })
 })
 
 app.get('/demo', async (req, reply) => {
@@ -116,24 +116,24 @@ app.get('/question', queryStringOpts, async (req, reply) => {
   reply
     .header('Content-Type', 'application/json')
     .code(200)
-    .send({ hello: 'town' });  
+    .send({ hello: 'town' })
 })
 
 // test params schema
 app.get('/faq/:id', paramsOpts, async (req, reply) => {
   reply.header('Content-Type', 'application/json').code(200)
-  reply.send({ hello: 'village' });  
+  reply.send({ hello: 'village' })
 })
 
 // test request validation schema (body/headers)
 app.post('/info', validationOpts, async (req, reply) => {
   reply.header('Content-Type', 'application/json').code(200)
-  reply.send({ hello: 'info' });
+  reply.send({ hello: 'info' })
 })
 
 // hooks
 app.addHook('onRoute', (routeOptions) => {
-  console.log("route options", routeOptions);
+  console.log('route options', routeOptions)
 })
 
 // start the server

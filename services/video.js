@@ -1,11 +1,10 @@
-'use strict';
-import { streamVideo } from '../handlers/video.js';
+'use strict'
+import { streamVideo } from '../handlers/video.js'
 
 export const videoService = [
-    {
-        method: 'GET',
-        url: '/video',
-        handler: streamVideo
-    }
-];
-
+  {
+    method: 'GET',
+    url: '/video',
+    handler: streamVideo
+  }
+]
