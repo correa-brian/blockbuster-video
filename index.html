@@ -8,6 +8,8 @@
       href="/blockbuster-logo.png" />
 
     <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//googleads.github.io/videojs-ima/node_modules/videojs-contrib-ads/dist/videojs.ads.css" />
+    <link rel="stylesheet" href="//googleads.github.io/videojs-ima/dist/videojs.ima.css" />
     
     <title>Blockbuster Video Stream Services</title>
   </head>
@@ -20,11 +22,11 @@
     <h2>Video.js</h2>
     <video
       id="my-player"
-      class="video-js"
       controls
       preload="auto"
       poster="//vjs.zencdn.net/v/oceans.png"
       width="650"
+      height="268"
       style="margin: auto;">
 
       <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4"></source>
@@ -43,10 +45,34 @@
     <video-js id="my_video_1" class="vjs-default-skin" controls preload="auto" width="650" height="268" style="margin:auto;">
       <source src="https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8" type="application/x-mpegURL"></source>
     </video-js>
+
+    <h2>IMA Demo</h2>
+    <video id="content_video" class="video-js vjs-default-skin"
+        controls preload="auto" width="640" height="360" style="margin: auto;">
+      <source src="https://storage.googleapis.com/gvabox/media/samples/android.mp4"
+          type="video/mp4" />
+    </video>
     
     <script src="https://unpkg.com/video.js/dist/video.min.js"></script>
+    <script src="//imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <script src="//googleads.github.io/videojs-ima/node_modules/videojs-contrib-ads/dist/videojs.ads.min.js"></script>
+    <script src="//googleads.github.io/videojs-ima/dist/videojs.ima.js"></script>
     <script>
       var player = videojs('my_video_1');
+    </script>
+    <script>
+      var player = videojs('content_video');
+      var options = {
+        id: 'content_video',
+        adTagUrl: 'http://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=/124319096/external/ad_rule_samples&ciu_szs=300x250&ad_rule=1&impl=s&gdfp_req=1&env=vp&output=xml_vmap1&unviewed_position_start=1&cust_params=sample_ar%3Dpremidpostpod%26deployment%3Dgmf-js&cmsid=496&vid=short_onecue&correlator='
+      };
+
+      player.ima(options);
+      // On mobile devices, you must call initializeAdDisplayContainer as the result
+      // of a user action (e.g. button click). If you do not make this call, the SDK
+      // will make it for you, but not as the result of a user action. For more info
+      // see our examples, all of which are set up to work on mobile devices.
+      // player.ima.initializeAdDisplayContainer();
     </script>
   </body>  
 </html>
