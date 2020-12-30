@@ -9,3 +9,7 @@ Web server written in fastify framework. It's currently a combination of REST en
 - `npm install`
 - `npm start`
 - visit: `localhost:3000/demo`
+
+### Resources
+- [Sample VAST XML](https://github.com/InteractiveAdvertisingBureau/VAST_Samples)
+- Sample hosted [Vast/VPAID examples](https://foliovision.com/player/vast/sample-vast-tags)
