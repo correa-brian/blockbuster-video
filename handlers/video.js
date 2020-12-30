@@ -7,7 +7,7 @@ import fs from 'fs'
  * @param { Request } req
  * @param { Object } reply
  */
-export const streamVideo = (req, reply) => {
+export const streamVideo = async (req, reply) => {
   // Ensure there is a range given for the video
   const range = req.headers.range
   if (!range) {
@@ -28,7 +28,7 @@ export const streamVideo = (req, reply) => {
   // Create headers
   const contentLength = end - start + 1
   const videoStream = fs.createReadStream(videoPath, { start, end })
-  return reply
+  await reply
     .code(206)
     .header('Content-Length', contentLength)
     .type('video/mp4')
