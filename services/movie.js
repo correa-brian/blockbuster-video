@@ -19,16 +19,17 @@ const schema = {
 /**
  * Available routes for accessing movies.
  */
-export const movieService = [{
-  method: 'GET',
-  url: '/movies',
-  handler: getMovies,
-  schema: schema
-},
-{
-  method: 'GET',
-  url: '/movies/movie/:id',
-  handler: getMovie,
-  schema: schema
-}
+export const movieService = [
+  {
+    method: 'GET',
+    url: '/movies',
+    handler: getMovies,
+    schema: schema
+  },
+  {
+    method: 'GET',
+    url: '/movies/movie/:id',
+    handler: getMovie,
+    schema: schema
+  }
 ]
