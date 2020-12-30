@@ -6,7 +6,6 @@ import { videoService } from './services/video.js'
 import mongoConnector from './plugins/mongo-connector.js'
 import path from 'path'
 import fastifyStatic from 'fastify-static'
-import fastifyMultipart from 'fastify-multipart'
 
 const app = fastify({
   logger: true
@@ -20,7 +19,6 @@ app.register(fastifyStatic, {
 
 // connect to DB
 app.register(mongoConnector)
-app.register(fastifyMultipart)
 
 // movie service contains movie-related routes
 movieService.forEach((route, index) => {

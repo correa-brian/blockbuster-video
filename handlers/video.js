@@ -8,12 +8,9 @@ export const streamVideo = async (req, reply) => {
             .code(400).send("Requires Range header");
     }
 
-    
     // get video stats (about 61MB)
     const videoPath = "./bigbuck.mp4";
     const videoSize = fs.statSync("bigbuck.mp4").size;
-
-    console.log("SIZE:", videoSize);
 
     // Parse Range
     // Example: "bytes=32324-"
@@ -23,13 +20,12 @@ export const streamVideo = async (req, reply) => {
 
       // Create headers
     const contentLength = end - start + 1;
-
     const videoStream = fs.createReadStream(videoPath, { start, end });
     reply
         .code(206)
         .header('Content-Length', contentLength)
-        .type('video.mp4')
+        .type('video/mp4')
         .header('Content-Range', `bytes ${start}-${end}/${videoSize}`)
         .header('Accept-Ranges', 'bytes')
-        .send(videoStream.pipe(reply))
+        .send(videoStream)
 }

@@ -1,7 +1,7 @@
 {
   "name": "blockerbuster-video",
   "version": "1.0.0",
-  "description": "",
+  "description": "Streaming server",
   "main": "app.js",
   "type": "module",
   "directories": {
@@ -13,13 +13,15 @@
     "start": "node app.js",
     "lint": "standard --fix"
   },
-  "keywords": [],
+  "keywords": [
+    "fastify",
+    "web"
+  ],
   "author": "correa-brian",
   "license": "ISC",
   "dependencies": {
     "fastify": "^3.9.2",
     "fastify-mongodb": "^2.0.1",
-    "fastify-multipart": "^3.3.1",
     "fastify-plugin": "^3.0.0",
     "fastify-static": "^3.3.0"
   },
