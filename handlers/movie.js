@@ -32,7 +32,7 @@ export const getMovies = async (req, reply) => {
  * Returns a movie by id.
  *
  * @param { Request } req
- * @param { Object} reply
+ * @param { Object } reply
  */
 export const getMovie = async (req, reply) => {
   const id = Number(req.params.id)

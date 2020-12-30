@@ -59,7 +59,7 @@ const validationOpts = {
     headers: {
       type: 'object',
       properties: {
-        'secret-pw': {type: 'string'}
+        'secret-pw': { type: 'string' }
       },
       required: ['secret-pw']
     }
