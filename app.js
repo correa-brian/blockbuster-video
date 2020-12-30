@@ -3,6 +3,8 @@
 import fastify from 'fastify'
 import { movieService } from './services/movie.js'
 import mongoConnector from './plugins/mongo-connector.js'
+import path from 'path'
+import fastifyStatic from 'fastify-static'
 
 const app = fastify({
   logger: true
@@ -10,6 +12,9 @@ const app = fastify({
 
 // order matters: https://github.com/fastify/fastify/blob/master/docs/Getting-Started.md#loading-order-of-your-plugins
 // 3P plugins, custom plugins, decorators, hooks, services
+app.register(fastifyStatic, {
+  root: path.resolve(path.dirname(''))
+})
 
 // connect to DB
 app.register(mongoConnector)
@@ -91,6 +96,14 @@ app.setSerializerCompiler(({ schema, method, url, httpStatus }) => {
 app.get('/', outputSchema, async (req, reply) => {
   reply.header('Content-Type', 'application/json').code(200)
   reply.send({ hello: 'world' });
+})
+
+app.get('/demo', async (req, reply) => {
+  reply
+    .header('Content-Type', 'text/html')
+    .code(200)
+    .type('text/html')
+    .sendFile('./index.html')
 })
 
 // test query string schema
